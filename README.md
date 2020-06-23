@@ -1,0 +1,2 @@
+# RestaurantAppCore
+Core Razor Pages
