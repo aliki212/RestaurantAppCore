@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
+using RestaurantAppCore.Core;
+using RestaurantAppCore.Data;
 
 namespace RestaurantAppCore.Pages.Restaurants
 {
@@ -12,16 +14,22 @@ namespace RestaurantAppCore.Pages.Restaurants
     {
         private readonly IConfiguration _configuration;
 
-        public ListModel(IConfiguration configuration)
+        private readonly IRestaurantData _restaurantData;
+
+        public ListModel(IConfiguration configuration, IRestaurantData restaurantData)
         {
             _configuration = configuration;
+            _restaurantData = restaurantData;
         }
 
         public string Message { get; set; }
 
+        public IEnumerable<Restaurant> Restaurants { get; set; }
+
         public void OnGet()
         {
             Message = _configuration["Mess"];
+            Restaurants = _restaurantData.GetAllRestaurants();
         }
     }
 }
