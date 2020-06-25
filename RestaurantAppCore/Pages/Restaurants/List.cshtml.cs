@@ -26,11 +26,14 @@ namespace RestaurantAppCore.Pages.Restaurants
 
         public IEnumerable<Restaurant> Restaurants { get; set; }
 
-        public void OnGet(string searchTerm)
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
+        public void OnGet()
         {
             Message = _configuration["Mess"];
             //Restaurants = _restaurantData.GetAllRestaurants();
-            Restaurants = _restaurantData.GetRestaurantByName(searchTerm);
+            Restaurants = _restaurantData.GetRestaurantByName(SearchTerm);
         }
     }
 }
