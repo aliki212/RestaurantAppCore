@@ -8,7 +8,7 @@ namespace RestaurantAppCore.Data
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetAllRestaurants();
+        IEnumerable<Restaurant> GetRestaurantByName(string name);
 
-        
     }
 }

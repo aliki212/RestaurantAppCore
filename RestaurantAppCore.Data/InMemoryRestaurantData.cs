@@ -28,6 +28,12 @@ namespace RestaurantAppCore.Data
                    select restaurant;
         }
 
-        
+        public IEnumerable<Restaurant> GetRestaurantByName(string name)
+        {
+            return from restaurant in restaurantsList
+                   where string.IsNullOrEmpty(name) || restaurant.Name.StartsWith(name)
+                   orderby restaurant.Name
+                   select restaurant;
+        }
     }
 }
